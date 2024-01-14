@@ -8,23 +8,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Waits extends BaseLaye.BaseClass {
-	
+	public static  WebElement visibilityStatus(WebElement wb) {
+		return new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(wb));
+	}
 
 	public static void sendkeys(WebElement wb, String value) {
-		new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(wb)).sendKeys(value);
+		visibilityStatus(wb).sendKeys(value);
 	}
 
 	public static void click(WebElement wb) {
-		new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(wb)).click();
+		visibilityStatus(wb).click();
 	}
 
 	public String gettext(WebElement wb) {
-		return new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(wb)).getText();
+		return visibilityStatus(wb).getText();
 	}
 
 	public String getatribute(WebElement wb, String key) {
-		return new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(wb))
-				.getAttribute(key);
+		return visibilityStatus(wb).getAttribute(key);
 	}
 	
 	public void selectAnyButton(List<WebElement>ls,String value) {
